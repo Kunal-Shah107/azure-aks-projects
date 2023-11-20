@@ -9,7 +9,7 @@
 - Verify if kubernetes worker nodes are ready. 
 ```
 # Configure Cluster Creds (kube config) for Azure AKS Clusters
-az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+az aks get-credentials --resource-group aks-rg1 --name aksdemo
 
 # Get Worker Node Status
 kubectl get nodes
@@ -25,7 +25,7 @@ kubectl get nodes -o wide
 kubectl run <desired-pod-name> --image <Container-Image> 
 
 # Replace Pod Name, Container Image
-kubectl run my-first-pod --image stacksimplify/kubenginx:1.0.0
+kubectl run my-first-pod --image therawknight/mynginx_custom_image
 ```  
 
 ### List Pods
