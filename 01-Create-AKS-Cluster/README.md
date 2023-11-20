@@ -11,11 +11,11 @@
 ## Step-02: Create AKS Cluster
 - Create Kubernetes Cluster
 - **Basics**
-  - **Subscription:** StackSimplify-Paid-Subscription
+  - **Subscription:** <Your_Subscription_Name>
   - **Resource Group:** Creat New: aks-rg1
-  - **Cluster preset configuration:** Standard
-  - **Kubernetes Cluster Name:** aksdemo1
-  - **Region:** (US) Central US
+  - **Cluster preset configuration:** Dev/Test
+  - **Kubernetes Cluster Name:** aksdemo
+  - **Region:** <Your_Choice_Region> 
   - **Availability zones:** Zones 1, 2, 3
   - **AKS Pricing Tier:** Free
   - **Kubernetes Version:** Select what ever is latest stable version
@@ -23,11 +23,14 @@
   - **Node Size:** Standard DS2 v2 (Default one)
   - **Scale method:** Autoscale
   - **Node Count range:** 1 to 5
-- **Node Pools**
-  - leave to defaults
-- **Access**
+
+  - **Access**
   - **Authentication and Authorization:** 	Local accounts with Kubernetes RBAC
   - Rest all leave to defaults
+
+- **Node Pools**
+  - leave to defaults
+
 - **Networking**
   - **Network Configuration:** Azure CNI
   - Review all the auto-populated details 
@@ -56,7 +59,7 @@
 az aks get-credentials --resource-group <Resource-Group-Name> --name <Cluster-Name>
 
 # Replace Resource Group & Cluster Name
-az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+az aks get-credentials --resource-group aks-rg1 --name aksdemo
 
 # List Kubernetes Worker Nodes
 kubectl get nodes 
@@ -120,6 +123,9 @@ kubectl get all --all-namespaces
 # Install Azure CLI (MAC)
 brew update && brew install azure-cli
 
+# Install Azure CLI (UBUNTU)
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
 # Login to Azure
 az login
 
@@ -127,7 +133,7 @@ az login
 az aks install-cli
 
 # Configure Cluster Creds (kube config)
-az aks get-credentials --resource-group aks-rg1 --name aksdemo1
+az aks get-credentials --resource-group aks-rg1 --name aksdemo
 
 # List AKS Nodes
 kubectl get nodes 
@@ -138,9 +144,8 @@ kubectl get nodes -o wide
 - https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
 
 ## Step-07: Deploy Sample Application and Test
-- Don't worry about what is present in these two files for now. 
-- By the time we complete **Kubernetes Fundamentals** sections, you will be an expert in writing Kubernetes manifest in YAML.
-- For now just focus on result. 
+- Don't worry about what is present in these two files for now. Its Nginx Docker Image deployment
+
 ```t
 # Deploy Application
 kubectl apply -f kube-manifests/
