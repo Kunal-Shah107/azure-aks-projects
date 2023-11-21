@@ -28,13 +28,18 @@ az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralus --nam
 - Make a note of Static IP which we will use in next step when installing Ingress Controller
 ```t
 # Make a note of Public IP created for Ingress
-52.154.156.139
+XX.154.XXX.XXX
 ```
 
 ## Step-03: Install Ingress Controller
 ```t
-# Install Helm3 (if not installed)
+# Install Helm3 (if not installed) (macOs)
 brew install helm
+
+# Install Helm3 (if not installed) (Script)
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
 
 # Create a namespace for your ingress resources
 kubectl create namespace ingress-basic
