@@ -40,8 +40,8 @@ kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-
 - Go to Services -> Container Registries
 - Click on **Add**
 - Subscription: StackSimplify-Paid-Subsciption
-- Resource Group: acr-rg2
-- Registry Name: acrdemo2ss   (NAME should be unique across Azure Cloud)
+- Resource Group: acr-rg
+- Registry Name: acrdemonewsp   (NAME should be unique across Azure Cloud)
 - Location: Central US
 - SKU: Basic  (Pricing Note: $0.167 per day)
 - Click on **Review + Create**
@@ -73,7 +73,7 @@ docker stop acr-app2
 ```
 
 ## Step-04: Enable Docker Login for ACR Repository 
-- Go to Services -> Container Registries -> acrdemo2ss
+- Go to Services -> Container Registries -> acrdemonewsp
 - Go to **Access Keys**
 - Click on **Enable Admin User**
 - Make a note of Username and password
@@ -83,7 +83,7 @@ docker stop acr-app2
 ### Build, Test Locally, Tag and Push to ACR
 ```
 # Export Command
-export ACR_REGISTRY=acrdemo2ss.azurecr.io
+export ACR_REGISTRY=acrdemonewsp.azurecr.io
 export ACR_NAMESPACE=app2
 export ACR_IMAGE_NAME=acr-app2
 export ACR_IMAGE_TAG=v1
@@ -95,7 +95,7 @@ docker login $ACR_REGISTRY
 # Tag
 docker tag acr-app2:v1  $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 It replaces as below
-docker tag acr-app2:v1 acrdemo2ss.azurecr.io/app2/acr-app2:v1
+docker tag acr-app2:v1 acrdemonewsp.azurecr.io/app2/acr-app2:v1
 
 # List Docker Images to verify
 docker images acr-app2:v1
@@ -105,7 +105,7 @@ docker images $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 ```
 ### Verify Docker Image in ACR Repository
-- Go to Services -> Container Registries -> acrdemo2ss
+- Go to Services -> Container Registries -> acrdemonewsp
 - Go to **Repositories** -> **app2/acr-app2**
 
 ## Step-05: Create Service Principal to access Azure Container Registry
@@ -120,7 +120,7 @@ docker push $ACR_REGISTRY/$ACR_NAMESPACE/$ACR_IMAGE_NAME:$ACR_IMAGE_TAG
 # Modify for your environment.
 # ACR_NAME: The name of your Azure Container Registry
 # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
-ACR_NAME=acrdemo2ss
+ACR_NAME=acrdemonewsp
 SERVICE_PRINCIPAL_NAME=acr-sp-demo
 
 # Obtain the full registry ID for subsequent command args
@@ -149,7 +149,7 @@ echo "Service principal password: $SP_PASSWD"
 # ACR_NAME: The name of your Azure Container Registry
 # SERVICE_PRINCIPAL_NAME: Must be unique within your AD tenant
 #ACR_NAME=<container-registry-name>
-ACR_NAME=acrdemo2ss
+ACR_NAME=acrdemonewsp
 SERVICE_PRINCIPAL_NAME=acr-sp-demo
 
 # Obtain the full registry ID for subsequent command args
@@ -189,9 +189,9 @@ kubectl create secret docker-registry <secret-name> \
     --docker-password=<service-principal-password>
 
 # Replace
-kubectl create secret docker-registry acrdemo2ss-secret \
+kubectl create secret docker-registry acrdemonewsp-secret \
     --namespace default \
-    --docker-server=acrdemo2ss.azurecr.io \
+    --docker-server=acrdemonewsp.azurecr.io \
     --docker-username=80beacfe-7176-4ff5-ad22-dbb15528a9a8 \
     --docker-password=0zjUzGzSx3_.xi1SC40VcWkdVyl8Ml8QNj    
 
@@ -206,12 +206,12 @@ kubectl get secrets
     spec:
       containers:
         - name: acrdemo-localdocker
-          image: acrdemo2ss.azurecr.io/app2/acr-app2:v1
+          image: acrdemonewsp.azurecr.io/app2/acr-app2:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
       imagePullSecrets:
-        - name: acrdemo2ss-secret           
+        - name: acrdemonewsp-secret           
 ```
 
 ### Deploy to AKS and Test
