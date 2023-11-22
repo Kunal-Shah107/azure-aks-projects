@@ -49,7 +49,7 @@ kubectl get nodes
 kubectl get nodes -o wide
 
 # List Node Pools
-az aks nodepool list --cluster-name aksdemo2 --resource-group aks-rg2 --output table
+az aks nodepool list --cluster-name aksdemonew --resource-group aks-rg2 --output table
 
 # Access Application
 kubectl get svc
@@ -65,6 +65,6 @@ Password: password101
 kubectl delete -f kube-manifests/
 
 # Delete this new cluster created for Virtual Nodes (if you want to)
-az aks delete --name aksdemo2 --resource-group aks-rg2
+az aks delete --name aksdemonew --resource-group aks-rg2
 ```
 
