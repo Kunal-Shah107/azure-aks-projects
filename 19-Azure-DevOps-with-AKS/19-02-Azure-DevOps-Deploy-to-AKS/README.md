@@ -8,7 +8,7 @@ description: Create Azure Pipeline to Build and Push Docker Image to Azure Conta
 - We should have Azure AKS Cluster Up and Running.
 ```
 # Configure Command Line Credentials
-az aks get-credentials --name aksdemo2 --resource-group aks-rg2
+az aks get-credentials --name aksdemo --resource-group aks-rg
 
 # Verify Nodes
 kubectl get nodes 
