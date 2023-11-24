@@ -108,7 +108,7 @@ kubectl get svc
 kubectl get ingress
 
 # Access Application
-http://<Public-IP-created-for-Ingress>/app1/index.html
+http://<Public-IP-created-for-Ingress>/index.html
 http://<Public-IP-created-for-Ingress>
 
 # Verify Ingress Controller Logs
