@@ -11,7 +11,7 @@
 ```
 # Setup Environment Variables
 export RESOURCE_GROUP=aks-rg1-autoscaling
-export REGION=centralus
+export REGION=uaenorth
 export AKS_CLUSTER=aks-autoscaling-demo
 echo $RESOURCE_GROUP, $REGION, $AKS_CLUSTER
 
