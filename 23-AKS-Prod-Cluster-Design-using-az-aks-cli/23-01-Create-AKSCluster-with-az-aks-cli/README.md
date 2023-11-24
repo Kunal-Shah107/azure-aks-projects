@@ -21,7 +21,7 @@
 # Edit export statements to make any changes required as per your environment
 # Execute below export statements
 AKS_RESOURCE_GROUP=aks-prod
-AKS_REGION=centralus
+AKS_REGION=uaenorth
 echo $AKS_RESOURCE_GROUP, $AKS_REGION
 
 # Create Resource Group
