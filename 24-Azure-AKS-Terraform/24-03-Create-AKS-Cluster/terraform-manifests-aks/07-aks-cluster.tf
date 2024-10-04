@@ -45,6 +45,9 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     auto_scaling_enabled  = true
     max_count            = 2
     min_count            = 1
+
+    # # Reference the existing subnet ID for the node pool
+    vnet_subnet_id       = "${var.subnet_id}"
     node_labels = {
       "nodepool-type"    = "system"
       "environment"      = "dev"
@@ -109,6 +112,7 @@ oms_agent {
   network_profile {
     network_plugin = "azure"
     load_balancer_sku = "standard"
+    network_plugin_mode = "overlay"
   }
 
   tags = {

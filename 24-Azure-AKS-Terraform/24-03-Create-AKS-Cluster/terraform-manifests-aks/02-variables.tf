@@ -33,6 +33,11 @@ variable "ssh_public_key" {
   description = "This variable defines the SSH Public Key for Linux k8s Worker nodes"  
 }
 
+variable "subnet_id" {
+  description = "The ID of the existing subnet for AKS nodes"
+  type        = string
+}
+
 # # Windows Admin Username for k8s worker nodes
 # variable "windows_admin_username" {
 #   type = string

@@ -332,7 +332,7 @@ kubectl get nodes
   - Click on Create
 - Login and change password 
   - URL: https://portal.azure.com
-  - Username: taksadmin1@stacksimplifygmail.onmicrosoft.com  (Change your domain name)
+  - Username: (Change your domain name)
   - Old Password: @AKSadmin11
   - New Password: @AKSadmin22
   - Confirm Password: @AKSadmin22
@@ -347,6 +347,20 @@ az aks get-credentials --resource-group terraform-aks-dev --name terraform-aks-d
 kubectl get nodes
 URL: https://microsoft.com/devicelogin
 Code: GUKJ3T9AC (sample)
-Username: taksadmin1@stacksimplifygmail.onmicrosoft.com  (Change your domain name)
+Username: (Change your domain name)
 Password: @AKSadmin22
 ```
+
+Summary of Pod Functions
+
+ama-logs	= Logs & metrics collection for Azure Monitor	Collects logs/metrics and sends to Azure Monitor
+azure-cns	= IP management for Azure CNI overlay	Manages IP allocation for pods in the VNet
+azure-ip-masq-agent	= IP masquerading rules	Manages NAT rules for internal/external traffic
+cloud-node-manager	= Node lifecycle in Azure	Syncs node metadata with Azure platform
+coredns	= DNS server for Kubernetes	Provides DNS resolution for service discovery
+coredns-autoscaler	= Auto-scales CoreDNS pods	Monitors DNS load and adjusts replicas as needed
+csi-azuredisk-node	= Azure Disk storage driver	Manages Azure managed disk volumes as persistent storage
+csi-azurefile-node	= Azure File storage driver	Manages Azure File shares as storage
+konnectivity-agent	= Secure control plane communication	Ensures secure connectivity between control plane and nodes
+kube-proxy	= Network proxy for services and pods	Manages network rules for service-to-pod communication
+metrics-server	= Resource usage monitoring	Collects CPU/memory usage for autoscaling & monitoring
